@@ -1,15 +1,9 @@
-# Project Name Here
-Replace this text with a brief description (2-3 sentences) of your project. This description should draw the reader in and make them interested in what you've built. You can include what the biggest challenges, takeaways, and triumphs from completing the project were. As you complete your portfolio, remember your audience is less familiar than you are with all that your project entails!
-
-You should comment out all portions of your portfolio that you have not completed yet, as well as any instructions:
-```HTML 
-<!--- This is an HTML comment in Markdown -->
-<!--- Anything between these symbols will not render on the published site -->
-```
+# Ball Tracking Robot
+The ball tracking robot uses a Pi camera and an ultrasonic sensor to locate the ball. The robot uses motors to follow or intercept the ball while maintaining a set distance. The computer vision and the PID control make it complex and challenging
 
 | **Engineer** | **School** | **Area of Interest** | **Grade** |
 |:--:|:--:|:--:|:--:|
-| FirstName LastInitialOnly | School Name | Electrical Engineering | Incoming Senior
+| Elian C | St. Joseph's Institution International  | Robotics and Computer Vision | Grade 9
 
 **Replace the BlueStamp logo below with an image of yourself and your completed project. Follow the guide [here](https://tomcam.github.io/least-github-pages/adding-images-github-pages-site.html) if you need help.**
 
@@ -78,9 +72,17 @@ Don't forget to place the link of where to buy each component inside the quotati
 
 | **Part** | **Note** | **Price** | **Link** |
 |:--:|:--:|:--:|:--:|
-| Item Name | What the item is used for | $Price | <a href="https://www.amazon.com/Arduino-A000066-ARDUINO-UNO-R3/dp/B008GRTSV6/"> Link </a> |
-| Item Name | What the item is used for | $Price | <a href="https://www.amazon.com/Arduino-A000066-ARDUINO-UNO-R3/dp/B008GRTSV6/"> Link </a> |
-| Item Name | What the item is used for | $Price | <a href="https://www.amazon.com/Arduino-A000066-ARDUINO-UNO-R3/dp/B008GRTSV6/"> Link </a> |
+| Screwdriver | Assembling the robot chassis | $20.27 | <a href="https://www.amazon.sg/dp/B0BBFJ2XKY?ref=ppx_yo2ov_dt_b_fed_asin_title"> Link </a> |
+| H-Bridge Motor Drive | Controls the direction and speed of the DC Motors | $20.51 | <a href="https://www.amazon.sg/VKLSVAN-Channel-H-Bridge-Stepper-Controller/dp/B0DQPRDHSK/ref=sr_1_1?crid=Y8BXRSLRBPA2&dib=eyJ2IjoiMSJ9.N12Bqdf_2P8Sg-7hcxYlDFdt5Z4RdXTwKJO_O8gKZyxiHskn-fX8uaW0cgysQlNzSFdROvS8e3FcUe0l00L2-5dAW1d-Rlnw-cVgMJMF-gQlFt_OYgWtLGY7JOvS8YMSjqQ5XiUUDvqhGPtj-Z0rl4iCA0UL3GTLccxvOxph2dm8asICSbQS_waohnQv3jnLPt4Em2QdC7mOdPrb3AZmzTr8uudnXNQxHyM12Qb7HFkpzrYUDLJvCNcm4GpfMWZuPCzbj4U5sMbTd0MenIPGtimoEHj_3oT4jnWfwy3ha9I.yukHYovBVQjkpeKhMBX20XnFG99hJxHm1T11Qm8Gbb4&dib_tag=se&keywords=H-bridge&qid=1782927562&sprefix=h-bri%2Caps%2C278&sr=8-1&th=1"> Link </a> |
+| Raspberry Pi 4 | Runs the Python code that processes the camera feed, calculates PID values, and sends GPIO signals to the H-Bridge to control the motors | $216.27 | <a href="https://www.amazon.sg/dp/B0C8LV6VNZ?ref=ppx_yo2ov_dt_b_fed_asin_title"> Link </a> |
+| Multimeter | Checks the voltage of wires to prevent short circuit | $25.99 | <a href="https://www.amazon.sg/dp/B01ISAMUA6?ref=ppx_yo2ov_dt_b_fed_asin_title"> Link </a> |
+| Ultrasonic Sensor | Measures the distance to the ball | $25.35 | <a href="https://www.amazon.sg/dp/B0CQCCGXCP?ref=ppx_yo2ov_dt_b_fed_asin_title"> Link </a> |
+| Chassis Kit | Provides the physical framework to mount and support all components including wheels and the Raspberry Pi | $24.32 | <a href="https://www.amazon.sg/dp/B01LXY7CM3?ref=ppx_yo2ov_dt_b_fed_asin_title"> Link </a> |
+| Pi Camera | Captures the live video feed, which the code then processes to detect the ball's colour and calculate its position relative to the centre of the frame | $24.45 | <a href="https://www.amazon.sg/dp/B07RWCGX5K?ref=ppx_yo2ov_dt_b_fed_asin_title&th=1"> Link </a> |
+| Batteries | Provides power for the motors| $29.86 | <a href="https://www.amazon.sg/dp/B0035LCFNQ?ref=ppx_yo2ov_dt_b_fed_asin_title&th=1"> Link </a> |
+| Motor Dual DC | Drives the wheels under the control of the H-Bridge | $19.80 | <a href="https://www.amazon.sg/dp/B09N6NXP4H?ref=ppx_yo2ov_dt_b_fed_asin_title"> Link </a> |
+| Foam Ball | The target object that the robot tracks and intercepts | $12.95 | <a href="https://www.amazon.sg/dp/B000KYQ406?ref=ppx_yo2ov_dt_b_fed_asin_title"> Link </a> |
+| Electronics Kit | Provides the breadboard and jumper wires to connect components such as the H-Bridge, ultrasonic sensors, and motors | $9.99 | <a href="https://www.amazon.com/dp/B01ERP6WL4?ref=ppx_yo2ov_dt_b_fed_asin_title"> Link </a> |
 
 # Other Resources/Examples
 One of the best parts about Github is that you can view how other people set up their own work. Here are some past BSE portfolios that are awesome examples. You can view how they set up their portfolio, and you can view their index.md files to understand how they implemented different portfolio components.
