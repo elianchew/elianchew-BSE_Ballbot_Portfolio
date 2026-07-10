@@ -58,16 +58,131 @@ GPIO.cleanup()
 
 # Second Milestone
 
+<iframe width="560" height="315" src="https://www.youtube.com/embed/wWM_3ryNEk0?si=eCjt4IS2Hsm3CGhY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+# Code for the Pi Camera and Motors Test
+
+Pi Camera Code:
+```python3
+from picamera2 import Picamera2
+import cv2
+import numpy as np
+import time
+def segment_colour(frame):
+    hsv_roi=cv2.cvtColor(frame,cv2.COLOR_BGR2HSV)
+    mask_1=cv2.inRange(hsv_roi,np.array([160,160,10]),np.array([180,255,255]))
+    ycr_roi=cv2.cvtColor(frame,cv2.COLOR_BGR2YCrCb)
+    mask_2=cv2.inRange(ycr_roi, np.array((0.,165.,0.)),np.array((255., 255., 255.)))
+    mask=mask_1|mask_2
+    kern_dilate=np.ones((8,8),np.uint8)
+    kern_erode=np.ones((3,3),np.uint8)
+    mask=cv2.erode(mask,kern_erode)
+    mask=cv2.dilate(mask,kern_dilate)
+    return mask
+def find_blob(blob):
+    largest_contour=0
+    cont_index=0
+    contours,hierarchy=cv2.findContours(blob,cv2.RETR_CCOMP,cv2.CHAIN_APPROX_SIMPLE)
+    for idx,contour in enumerate(contours):
+        area=cv2.contourArea(contour)
+        if (area>largest_contour):
+            largest_contour=area
+            cont_index=idx
+    r=(0,0,2,2)
+    if len(contours)>0:
+        r=cv2.boundingRect(contours[cont_index])
+    return r,largest_contour
+camera=Picamera2()
+config=camera.create_preview_configuration(main={"size": (160, 120), "format": "RGB888"})
+camera.configure(config)
+camera.start()
+time.sleep(0.1)
+while True:
+    frame=camera.capture_array()
+    frame=cv2.flip(frame, 1)
+    mask_red=segment_colour(frame)
+    loct,area=find_blob(mask_red)
+    x,y,w,h=loct
+    if (w*h)>=10:
+        cv2.rectangle(frame,(x,y),(x+w,y+h),(0,255,0),2)
+        centre_x=int(x+w/2)
+        centre_y=int(y+h/2)
+        cv2.circle(frame, (centre_x,centre_y),3,(0,110,255),-1)
+        print("Ball found - area: %d centre:(%d, %d)" % (area, centre_x,centre_y))
+    else:
+        print("No ball found")
+    cv2.imshow("Camera feed", frame)
+    cv2.imshow("Red mask", mask_red)
+    if cv2.waitKey(1)&0xff==ord('q'):
+        break
+camera.stop()
+cv2.destroyAllWindows()
+```
+
+Motor Test Code:
+```python3
+import RPi.GPIO as GPIO
+import time
+GPIO.setmode(GPIO.BCM)
+MOTOR1A=22
+MOTOR1B=27
+MOTOR2A=24
+MOTOR2B=23
+GPIO.setup(MOTOR1A,GPIO.OUT)
+GPIO.setup(MOTOR1B,GPIO.OUT)
+GPIO.setup(MOTOR2A,GPIO.OUT)
+GPIO.setup(MOTOR2B,GPIO.OUT)
+def forward():
+      GPIO.output(MOTOR1A,GPIO.HIGH)
+      GPIO.output(MOTOR1B,GPIO.LOW)
+      GPIO.output(MOTOR2A,GPIO.HIGH)
+      GPIO.output(MOTOR2B,GPIO.LOW)
+def reverse():
+      GPIO.output(MOTOR1A,GPIO.LOW)
+      GPIO.output(MOTOR1B,GPIO.HIGH)
+      GPIO.output(MOTOR2A,GPIO.LOW)
+      GPIO.output(MOTOR2B,GPIO.HIGH)
+def rightturn():
+      GPIO.output(MOTOR1A,GPIO.HIGH)
+      GPIO.output(MOTOR1B,GPIO.LOW)
+      GPIO.output(MOTOR2A,GPIO.LOW)
+      GPIO.output(MOTOR2B,GPIO.HIGH)
+def leftturn():
+      GPIO.output(MOTOR1A,GPIO.LOW)
+      GPIO.output(MOTOR1B,GPIO.HIGH)
+      GPIO.output(MOTOR2A,GPIO.HIGH)
+      GPIO.output(MOTOR2B,GPIO.LOW)
+def stop():
+      GPIO.output(MOTOR1A,GPIO.LOW)
+      GPIO.output(MOTOR1B,GPIO.LOW)
+      GPIO.output(MOTOR2A,GPIO.LOW)
+      GPIO.output(MOTOR2B,GPIO.LOW)
+print("Forward")     
+forward()
+time.sleep(3)
+stop()
+time.sleep(1)
+print("Reverse")
+reverse()
+time.sleep(3)
+stop()
+time.sleep(1)
+print("Right")
+rightturn()
+time.sleep(3)
+stop()
+time.sleep(1)
+print("Left")
+leftturn()
+time.sleep(3)
+stop()
+GPIO.cleanup()
+```
+
 # Final Milestone
 
 # Schematics 
  [Tinkercad](https://www.tinkercad.com/blog/official-guide-to-tinkercad-circuits) and [Fritzing](https://fritzing.org/learning/) are both great resoruces to create professional schematic diagrams, though BSE recommends Tinkercad becuase it can be done easily and for free in the browser. 
-
-# Code
-
-```python
-
-```
 
 # Bill of Materials
 Here's where you'll list the parts in your project. To add more rows, just copy and paste the example rows below.
