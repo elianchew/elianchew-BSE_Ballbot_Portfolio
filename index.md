@@ -13,6 +13,49 @@ The ball tracking robot uses a Pi camera and an ultrasonic sensor to locate the 
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/3RR2q0Sp2D4?si=z95kCTO16c_35QIf" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
+# Code for the Ultrasonic Sensor Test
+
+```python
+import RPi.GPIO as GPIO
+import time
+GPIO.setmode(GPIO.BCM)
+GPIO_TRIGGER1=5
+GPIO_ECHO1=6
+GPIO_TRIGGER3=16
+GPIO_ECHO3=26
+GPIO.setup(GPIO_TRIGGER1,GPIO.OUT)
+GPIO.setup(GPIO_ECHO1,GPIO.IN)
+GPIO.setup(GPIO_TRIGGER3,GPIO.OUT)
+GPIO.setup(GPIO_ECHO3,GPIO.IN)
+GPIO.output(GPIO_TRIGGER1,False)
+GPIO.output(GPIO_TRIGGER3,False)
+def sonar(GPIO_TRIGGER,GPIO_ECHO):
+      start=0
+      stop=0
+      GPIO.setup(GPIO_TRIGGER,GPIO.OUT)
+      GPIO.setup(GPIO_ECHO,GPIO.IN)
+      GPIO.output(GPIO_TRIGGER,False)
+      time.sleep(0.01)
+      GPIO.output(GPIO_TRIGGER,True)
+      time.sleep(0.00001)
+      GPIO.output(GPIO_TRIGGER,False)
+      begin=time.time()
+      while GPIO.input(GPIO_ECHO)==0 and time.time()<begin+0.05:
+            start=time.time()
+      while GPIO.input(GPIO_ECHO)==1 and time.time()<begin+0.1:
+            stop=time.time()
+      elapsed=stop-start
+      distance=elapsed*34000
+      distance=distance/2
+      print ("Distance: %.1f"%distance)
+      return distance
+while True:
+      distanceR=sonar(GPIO_TRIGGER3,GPIO_ECHO3)
+      distanceL=sonar(GPIO_TRIGGER1,GPIO_ECHO1)
+      time.sleep(1)
+GPIO.cleanup()
+```
+
 # Second Milestone
 
 # Final Milestone
@@ -21,12 +64,9 @@ The ball tracking robot uses a Pi camera and an ultrasonic sensor to locate the 
  [Tinkercad](https://www.tinkercad.com/blog/official-guide-to-tinkercad-circuits) and [Fritzing](https://fritzing.org/learning/) are both great resoruces to create professional schematic diagrams, though BSE recommends Tinkercad becuase it can be done easily and for free in the browser. 
 
 # Code
-Here's where you'll put your code. The syntax below places it into a block of code. Follow the guide [here]([url](https://www.markdownguide.org/extended-syntax/)) to learn how to customize it to your project needs. 
 
 ```python
-void setup()
 
-}
 ```
 
 # Bill of Materials
