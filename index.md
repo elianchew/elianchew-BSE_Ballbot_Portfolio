@@ -5,8 +5,6 @@ The ball tracking robot uses a Pi camera and an ultrasonic sensor to locate the 
 |:--:|:--:|:--:|:--:|
 | Elian C | St. Joseph's Institution International  | Robotics and Computer Vision | Grade 9
 
-**Replace the BlueStamp logo below with an image of yourself and your completed project. Follow the guide [here](https://tomcam.github.io/least-github-pages/adding-images-github-pages-site.html) if you need help.**
-
 ![Headstone Image](logo.svg)
   
 # First Milestone
