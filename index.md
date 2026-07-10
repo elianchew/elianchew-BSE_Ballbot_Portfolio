@@ -63,7 +63,7 @@ GPIO.cleanup()
 # Code for the Pi Camera and Motors Test
 
 Pi Camera Code:
-```python3
+```python
 from picamera2 import Picamera2
 import cv2
 import numpy as np
@@ -120,7 +120,7 @@ cv2.destroyAllWindows()
 ```
 
 Motor Test Code:
-```python3
+```python
 import RPi.GPIO as GPIO
 import time
 GPIO.setmode(GPIO.BCM)
