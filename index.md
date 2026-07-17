@@ -6,14 +6,17 @@ The ball tracking robot uses a Pi camera and an ultrasonic sensor to locate the 
 | Elian C | St. Joseph's Institution International  | Robotics and Computer Vision | Grade 9
 
 ![Headstone Image](PhotoWithMyProject.jpg)
+
   
 # First Milestone
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/3RR2q0Sp2D4?si=z95kCTO16c_35QIf" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
+
 ## Technical Report
 
 I utilised Raspberry Pi 4 as the vision processor to run Python code that processes the camera feed and sends GPIO signals to the H-Bridge to control the motors. Ultrasonic sensors measure the distance to the ball without making physical contact by emitting high-frequency sound waves. The ultrasonic sensor outputs 5V on the Echo pin, and the Raspberry Pi's GPIO pins are only 3.3V tolerant. Without the voltage divider, the 5V signal would damage the Pi's GPIO pins. The divider brings 5V down to 3.33V using 1KΩ and 2KΩ resistors, making it safe for the Pi. The voltage divider is working correctly, as evidenced by the ultrasonic sensors returning accurate distance readings without damaging the Pi's GPIO pins. I encountered the SSID error that prevented SSH connection. I resolved it by re-entering my Wi-Fi SSID. When I tried to SSH in the terminal, the connection was refused multiple times, and I reflashed the SD card repeatedly to resolve it. When I connected the H-Bridge and motor wires to the Pi and tested my motors, I found that my H-Bridge was overheating. The cause was subsequently identified as a missing common ground connection. My Pi camera module was confirmed faulty after multiple reseating attempts and power cycles. To resolve this, I purchased a new replacement. Next, I will control the motors using the H-Bridge, integrate the Pi camera when the replacement arrives, and track the ball.
+
 
 ## Code for the Ultrasonic Sensor Test
 
@@ -58,13 +61,19 @@ while True:
 GPIO.cleanup()
 ```
 
+
+
 # Second Milestone
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/wWM_3ryNEk0?si=eCjt4IS2Hsm3CGhY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
+
+
 ## Technical Report
 
 I have successfully tested the motors in all directions and confirmed the Pi Camera is operational. I use an H-bridge to control the motors, with the Pi sending digital signals via its GPIO pins. The Pi camera detects red objects using image segmentation in HSV and YCrCb colour spaces to isolate red pixels and find contours for the ball's location. I faced several issues with motor connections, including a burnt H-bridge due to a lack of common ground. I resolved this by stripping the battery pack wire and replacing a faulty right motor and Pi camera. My next steps are to assemble and mount the components on the chassis and implement PID control.
+
+
 
 ## Code for the Pi Camera and Motors Test
 
@@ -185,13 +194,19 @@ stop()
 GPIO.cleanup()
 ```
 
+
+
 # Final Milestone
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/G_yUzSXZdU4?si=G2knDzwRiztILe88" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
+
+
 ## Technical Report**
 
 I have integrated my camera, motors, and sensors' scripts to detect the ball's direction. Initially planning to use PID control, I opted for a simpler proportional control approach to meet the programme timeline. The tracking script detects the ball, calculates its position relative to the frame's centre, and directs the robot to turn towards it. I resolved issues with my Pi camera being mirrored by removing the flipping line and corrected the motors' direction by swapping the left-turn and right-turn functions. With more time, I'd implement PID control for smoother tracking and add multiple colour tracking for following different coloured balls.
+
+
 
 ## Code
 
@@ -396,12 +411,16 @@ cv2.destroyAllWindows()
 GPIO.cleanup()
 ```
 
+
+
 # Schematics 
 
 ![Ultrasonic Sensor Schematic](image.png)
 ![Motor and H-Bridge Schematic](image1.png)
 
 *Note: Schematics are based on a reference design. Pin assignments and component placement have been adapted to match this project's specific wiring configuration.*
+
+
  
 # Bill of Materials
 
@@ -418,6 +437,8 @@ GPIO.cleanup()
 | Motor Dual DC | Drives the wheels under the control of the H-Bridge | $19.80 | <a href="https://www.amazon.sg/dp/B09N6NXP4H?ref=ppx_yo2ov_dt_b_fed_asin_title"> Link </a> |
 | Foam Ball | The target object that the robot tracks and intercepts | $12.95 | <a href="https://www.amazon.sg/dp/B000KYQ406?ref=ppx_yo2ov_dt_b_fed_asin_title"> Link </a> |
 | Electronics Kit | Provides the breadboard and jumper wires to connect components such as the H-Bridge, ultrasonic sensors, and motors | $9.99 | <a href="https://www.amazon.com/dp/B01ERP6WL4?ref=ppx_yo2ov_dt_b_fed_asin_title"> Link </a> |
+
+
 
 # Other Resources/Examples
 
