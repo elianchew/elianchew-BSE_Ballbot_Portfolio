@@ -11,6 +11,10 @@ The ball tracking robot uses a Pi camera and an ultrasonic sensor to locate the 
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/3RR2q0Sp2D4?si=z95kCTO16c_35QIf" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
+**Technical Report**
+
+I utilised Raspberry Pi 4 as the vision processor to run Python code that processes the camera feed and sends GPIO signals to the H-Bridge to control the motors. Ultrasonic sensors measure the distance to the ball without making physical contact by emitting high-frequency sound waves. The ultrasonic sensor outputs 5V on the Echo pin, and the Raspberry Pi's GPIO pins are only 3.3V tolerant. Without the voltage divider, the 5V signal would damage the Pi's GPIO pins. The divider brings 5V down to 3.33V using 1KΩ and 2KΩ resistors, making it safe for the Pi. The voltage divider is working correctly, as evidenced by the ultrasonic sensors returning accurate distance readings without damaging the Pi's GPIO pins. I encountered the SSID error that prevented SSH connection. I resolved it by re-entering my Wi-Fi SSID. When I tried to SSH in the terminal, the connection was refused multiple times, and I reflashed the SD card repeatedly to resolve it. When I connected the H-Bridge and motor wires to the Pi and tested my motors, I found that my H-Bridge was overheating. The cause was subsequently identified as a missing common ground connection. My Pi camera module was confirmed faulty after multiple reseating attempts and power cycles. To resolve this, I purchased a new replacement. Next, I will control the motors using the H-Bridge, integrate the Pi camera when the replacement arrives, and track the ball.
+
 # Code for the Ultrasonic Sensor Test
 
 ```python
@@ -53,10 +57,6 @@ while True:
       time.sleep(1)
 GPIO.cleanup()
 ```
-
-**Technical Report**
-
-I utilised Raspberry Pi 4 as the vision processor to run Python code that processes the camera feed and sends GPIO signals to the H-Bridge to control the motors. Ultrasonic sensors measure the distance to the ball without making physical contact by emitting high-frequency sound waves. The ultrasonic sensor outputs 5V on the Echo pin, and the Raspberry Pi's GPIO pins are only 3.3V tolerant. Without the voltage divider, the 5V signal would damage the Pi's GPIO pins. The divider brings 5V down to 3.33V using 1KΩ and 2KΩ resistors, making it safe for the Pi. The voltage divider is working correctly, as evidenced by the ultrasonic sensors returning accurate distance readings without damaging the Pi's GPIO pins. I encountered the SSID error that prevented SSH connection. I resolved it by re-entering my Wi-Fi SSID. When I tried to SSH in the terminal, the connection was refused multiple times, and I reflashed the SD card repeatedly to resolve it. When I connected the H-Bridge and motor wires to the Pi and tested my motors, I found that my H-Bridge was overheating. The cause was subsequently identified as a missing common ground connection. My Pi camera module was confirmed faulty after multiple reseating attempts and power cycles. To resolve this, I purchased a new replacement. Next, I will control the motors using the H-Bridge, integrate the Pi camera when the replacement arrives, and track the ball.
 
 # Second Milestone
 
