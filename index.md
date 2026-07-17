@@ -5,7 +5,7 @@ The ball tracking robot uses a Pi camera and an ultrasonic sensor to locate the 
 |:--:|:--:|:--:|:--:|
 | Elian C | St. Joseph's Institution International  | Robotics and Computer Vision | Grade 9
 
-![Headstone Image](logo.svg)
+![Headstone Image](PhotoWithMyProject.jpg)
   
 # First Milestone
 
